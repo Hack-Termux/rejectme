@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reject Me or Not AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        input, button, textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reject Me or Not AI</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="position">Job Title:</label>
+            <input type="text" name="position" id="position" placeholder="e.g. Frontend Developer" required>
+
+            <label for="company">Company Name:</label>
+            <input type="text" name="company" id="company" placeholder="e.g. Google" required>
+
+            <button type="submit">Generate Follow-Up Email</button>
+            <hr>
+<h3>Need to write a job application?</h3>
+<a href="{% url 'job_application' %}">
+  <button type="button">Write Job Application</button>
+</a>
+
+        </form>
+
+        {% if email %}
+            <h2>Generated Email:</h2>
+            <pre>{{ email }}</pre>
+        {% endif %}
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

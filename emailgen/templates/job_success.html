@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Letter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px;
+            background: #f9f9f9;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #007bff;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            background: #f0f4f8;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            border-radius: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .copy-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-top: -40px;
+            margin-bottom: 20px;
+        }
+
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Thank you, {{ name }}!</h2>
+        <p>You've applied for <strong>{{ position }}</strong>.</p>
+
+        {% if cv_url %}
+            <p><a href="{{ cv_url }}" target="_blank">📄 Download your uploaded CV</a></p>
+        {% endif %}
+
+        <h3>Your AI-Generated Job Application Letter:</h3>
+        <button class="copy-btn" onclick="copyLetter()">Copy Letter</button>
+        <pre id="letter">{{ letter }}</pre>
+    </div>
+
+    <script>
+        function copyLetter() {
+            const letter = document.getElementById('letter').innerText;
+            navigator.clipboard.writeText(letter).then(() => {
+                alert("Letter copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
